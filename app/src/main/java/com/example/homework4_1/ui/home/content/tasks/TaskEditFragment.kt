@@ -1,15 +1,13 @@
-package com.example.homework4_1.ui.home
+package com.example.homework4_1.ui.home.content.tasks
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.homework4_1.Task
 import com.example.homework4_1.databinding.FragmentTaskEditBinding
 
 class TaskEditFragment : Fragment() {
@@ -39,19 +37,31 @@ class TaskEditFragment : Fragment() {
 
     private fun initView() {
         binding.etTask.setText(args.task.text)
-        binding.checkBox.isChecked = args.task.finished
+        when (args.task.type) {
+            TypeOfTask.URGENT_TASKS -> binding.rbInUrgentTask.isChecked = true
+            TypeOfTask.LONG_TASKS -> binding.rbLongTask.isChecked = true
+            TypeOfTask.COMPLETED -> binding.rbCompletedTask.isChecked = true
+            else -> {
+                binding.rbInUrgentTask.isChecked = true
+            }
+        }
     }
 
     private fun initListener() {
-        binding.btnDone.setOnClickListener {
+        binding.btnSave.setOnClickListener {
             setFragmentResult(
                 REQUEST_KEY, TaskEditFragmentArgs(
                     Task(
                         text = binding.etTask.text.toString(),
-                        finished = binding.checkBox.isChecked,
-                        position = args.task.position
+                        position = args.task.position,
+                        when (binding.rbGroup.checkedRadioButtonId) {
+                            binding.rbInUrgentTask.id -> TypeOfTask.URGENT_TASKS
+                            binding.rbCompletedTask.id -> TypeOfTask.COMPLETED
+                            else -> TypeOfTask.LONG_TASKS
+                        }
                     ),
-                    finished = args.finished
+                    new = args.new,
+                    lastType = args.lastType
                 ).toBundle()
             )
             findNavController().navigateUp()

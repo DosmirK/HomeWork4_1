@@ -1,33 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="32dp"
-    tools:context=".ui.home.TaskEditFragment">
+    android:padding="16dp"
+    tools:context=".ui.home.content.tasks.TaskEditFragment">
 
-    <CheckBox
-        android:layout_marginTop="240dp"
-        android:layout_gravity="center|top"
-        android:text="@string/task_finished"
-        android:id="@+id/check_box"
+    <TextView
+        android:text="@string/mark_as"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+    <RadioGroup
+        android:id="@+id/rb_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/rb_in_urgent_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_urgent_tasks"/>
+        <RadioButton
+            android:id="@+id/rb_long_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_long_tasks"/>
+        <RadioButton
+            android:id="@+id/rb_completed_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/completed_tasks"/>
+    </RadioGroup>
+
     <EditText
-        android:layout_gravity="center"
+        android:inputType="textMultiLine"
         android:id="@+id/et_task"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_task" />
+        android:textSize="16sp"
+        android:hint="@string/task_description"
+        android:importantForAutofill="no" />
 
     <Button
-        android:id="@+id/btn_done"
         android:layout_gravity="center"
+        android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="@string/done" />
+        android:text="@string/save"/>
 
-</FrameLayout>
+</LinearLayout>

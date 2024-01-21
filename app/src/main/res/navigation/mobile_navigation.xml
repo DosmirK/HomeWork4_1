@@ -16,26 +16,40 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.homework4_1.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.homework4_1.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.homework4_1.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/taskEditFragment"
-        android:name="com.example.homework4_1.ui.home.TaskEditFragment"
+        android:name="com.example.homework4_1.ui.home.content.tasks.TaskEditFragment"
         android:label="fragment_task_edit"
         tools:layout="@layout/fragment_task_edit" >
         <argument
             android:name="task"
-            app:argType="com.example.homework4_1.Task"/>
+            app:argType="com.example.homework4_1.ui.home.content.tasks.Task"/>
         <argument
-            android:name="finished"
-            app:argType="boolean"/>
+            android:name="new"
+            app:argType="boolean" />
+        <argument
+            android:name="lastType"
+            app:argType="com.example.homework4_1.ui.home.content.tasks.TypeOfTask" />
     </fragment>
+
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.homework4_1.ui.profile.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+
 </navigation>

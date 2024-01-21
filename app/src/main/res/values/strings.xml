@@ -1,11 +1,24 @@
 <resources>
     <string name="app_name">HomeWork4_1</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_profile">Profile</string>
     <string name="title_notifications">Notifications</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="task_finished">task finished</string>
     <string name="enter_task">enter task</string>
     <string name="done">done</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="user_name">User Name</string>
+    <string name="avatar">Avatar</string>
+    <string name="save">Save</string>
+    <string name="mark_as">Mark as</string>
+    <string name="in_urgent_tasks">In urgent tasks</string>
+    <string name="in_long_tasks">In long tasks</string>
+    <string name="completed_tasks">Completed tasks</string>
+    <string name="task_description">Task description</string>
+    <string name="title_all_tasks">All</string>
+    <string name="title_long_tasks">Long tasks</string>
+    <string name="title_urgent_tasks">Urgent tasks</string>
+    <string name="title_completed_tasks">Completed tasks</string>
 </resources>

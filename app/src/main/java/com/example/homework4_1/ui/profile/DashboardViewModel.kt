@@ -1,4 +1,4 @@
-package com.example.homework4_1.ui.dashboard
+package com.example.homework4_1.ui.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
