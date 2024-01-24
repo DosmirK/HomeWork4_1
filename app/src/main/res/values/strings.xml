@@ -4,11 +4,9 @@
     <string name="title_profile">Profile</string>
     <string name="title_notifications">Notifications</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="task_finished">task finished</string>
     <string name="enter_task">enter task</string>
     <string name="done">done</string>
-    <string name="edit_profile">Edit profile</string>
     <string name="user_name">User Name</string>
     <string name="avatar">Avatar</string>
     <string name="save">Save</string>
@@ -21,4 +19,13 @@
     <string name="title_long_tasks">Long tasks</string>
     <string name="title_urgent_tasks">Urgent tasks</string>
     <string name="title_completed_tasks">Completed tasks</string>
+    <string name="todo">TODO</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="task_categories">Task categories:</string>
+    <string name="write_down_and_complete_short_term_and_long_term_tasks">Write down and complete short-term and long-term tasks.</string>
+    <string name="increase_your_productivity_with">Increase your productivity with</string>
+    <string name="next">Next</string>
+    <string name="start">Start</string>
+    <string name="skip">Skip</string>
+    <string name="edit">Edit</string>
 </resources>

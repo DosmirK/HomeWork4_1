@@ -9,13 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
-import com.example.homework4_1.App
+import com.example.homework4_1.utils.App
 import com.example.homework4_1.databinding.FragmentEditProfileBinding
-import com.example.homework4_1.loadImage
+import com.example.homework4_1.utils.loadImage
 
 
 class EditProfileFragment : Fragment() {

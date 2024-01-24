@@ -4,14 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.homework4_1.App
+import com.example.homework4_1.utils.App
 import com.example.homework4_1.databinding.FragmentProfileBinding
-import com.example.homework4_1.loadImage
-import com.example.homework4_1.ui.notifications.NotificationsViewModel
+import com.example.homework4_1.utils.loadImage
 
 class ProfileFragment : Fragment() {
 

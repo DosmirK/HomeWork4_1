@@ -13,21 +13,15 @@ import com.example.homework4_1.ui.home.content.completed.CompletedTasksFragment
 import com.example.homework4_1.ui.home.content.longs.LongTaskFragment
 import com.example.homework4_1.ui.home.content.tasks.Task
 import com.example.homework4_1.ui.home.content.tasks.TaskEditFragment
-import com.example.homework4_1.ui.home.content.tasks.TaskEditFragmentArgs
 import com.example.homework4_1.ui.home.content.tasks.TaskFragment
 import com.example.homework4_1.ui.home.content.tasks.TypeOfTask
 import com.example.homework4_1.ui.home.content.urgent.UrgentTaskFragment
 import com.google.android.material.tabs.TabLayoutMediator
-private val allTasks = loadData(ArrayList()).also {
-    loadData(it)
-}
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val allTasks = loadData(ArrayList()).also {
-        loadData(it)
-    }
+    private val allTasks = loadData(ArrayList())
     private val urgentTasks = ArrayList(allTasks.filter { it.type == TypeOfTask.URGENT_TASKS })
     private val longTasks = ArrayList(allTasks.filter { it.type == TypeOfTask.LONG_TASKS })
     private val completedTasks = ArrayList(allTasks.filter { it.type == TypeOfTask.COMPLETED })
@@ -74,49 +68,51 @@ class HomeFragment : Fragment() {
         }
 
         setFragmentResultListener(TaskEditFragment.REQUEST_KEY) { _, bundle ->
-            val result = TaskEditFragmentArgs.fromBundle(bundle)
-            if (result.task.text.isNotEmpty()) {
-                if (result.new) {
-                    result.task.position = allTasks.size
-                    allTasks.add(result.task)
-                    when (result.task.type) {
-                        TypeOfTask.LONG_TASKS -> longTasks.add(result.task)
-                        TypeOfTask.URGENT_TASKS -> urgentTasks.add(result.task)
-                        else -> {completedTasks.add((result.task))}
-                    }
-                } else {
-                    allTasks[result.task.position] = result.task
-                    if (result.lastType == result.task.type) {
-                        when (result.task.type) {
-                            TypeOfTask.LONG_TASKS ->
-                                longTasks[longTasks.indexOf(longTasks.find { it.position == result.task.position })] =
-                                    result.task
-
-                            TypeOfTask.URGENT_TASKS ->
-                                urgentTasks[urgentTasks.indexOf(urgentTasks.find { it.position == result.task.position })] =
-                                    result.task
-
-                            else -> {
-                                completedTasks[completedTasks.indexOf(completedTasks.find { it.position == result.task.position })] =
-                                    result.task
-                            }
-                        }
-                    } else {
-                        when (result.lastType) {
-                            TypeOfTask.LONG_TASKS ->
-                                longTasks.remove(longTasks.find { it.position == result.task.position })
-
-                            TypeOfTask.URGENT_TASKS ->
-                                urgentTasks.remove(urgentTasks.find { it.position == result.task.position })
-
-                            else -> {
-                                completedTasks.remove(completedTasks.find { it.position == result.task.position })
-                            }
-                        }
+            val result = bundle.getParcelable<TaskEditFragment.TaskEditModel>("task_result")
+            if (result != null) {
+                if (result.task.text.isNotEmpty()) {
+                    if (result.new) {
+                        result.task.position = allTasks.size
+                        allTasks.add(result.task)
                         when (result.task.type) {
                             TypeOfTask.LONG_TASKS -> longTasks.add(result.task)
                             TypeOfTask.URGENT_TASKS -> urgentTasks.add(result.task)
-                            else -> {completedTasks.add(result.task)}
+                            else -> {completedTasks.add((result.task))}
+                        }
+                    } else {
+                        allTasks[result.task.position] = result.task
+                        if (result.taskType == result.task.type) {
+                            when (result.task.type) {
+                                TypeOfTask.LONG_TASKS ->
+                                    longTasks[longTasks.indexOf(longTasks.find { it.position == result.task.position })] =
+                                        result.task
+
+                                TypeOfTask.URGENT_TASKS ->
+                                    urgentTasks[urgentTasks.indexOf(urgentTasks.find { it.position == result.task.position })] =
+                                        result.task
+
+                                else -> {
+                                    completedTasks[completedTasks.indexOf(completedTasks.find { it.position == result.task.position })] =
+                                        result.task
+                                }
+                            }
+                        } else {
+                            when (result.taskType) {
+                                TypeOfTask.LONG_TASKS ->
+                                    longTasks.remove(longTasks.find { it.position == result.task.position })
+
+                                TypeOfTask.URGENT_TASKS ->
+                                    urgentTasks.remove(urgentTasks.find { it.position == result.task.position })
+
+                                else -> {
+                                    completedTasks.remove(completedTasks.find { it.position == result.task.position })
+                                }
+                            }
+                            when (result.task.type) {
+                                TypeOfTask.LONG_TASKS -> longTasks.add(result.task)
+                                TypeOfTask.URGENT_TASKS -> urgentTasks.add(result.task)
+                                else -> {completedTasks.add(result.task)}
+                            }
                         }
                     }
                 }
@@ -149,21 +145,21 @@ class HomeFragment : Fragment() {
 private fun loadData(tasks: ArrayList<Task>): ArrayList<Task> {
     tasks.add(
         Task(
-            "Изучить основы программирования на языке Python.",
+            "Написать долгосрочную задачу.",
             position = tasks.size,
             type = TypeOfTask.LONG_TASKS
         )
     )
     tasks.add(
         Task(
-            "Решить задачи на работу с базовыми типами данных: числа, строки, списки.",
+            "Выполнить задачу.",
             position = tasks.size,
             type = TypeOfTask.COMPLETED
         )
     )
     tasks.add(
         Task(
-            "Написать программу для сортировки списка.",
+            "Написать краткосрочную задачу.",
             position = tasks.size,
             type = TypeOfTask.URGENT_TASKS
         )

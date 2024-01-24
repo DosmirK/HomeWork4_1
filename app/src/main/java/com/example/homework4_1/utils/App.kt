@@ -1,4 +1,4 @@
-package com.example.homework4_1
+package com.example.homework4_1.utils
 
 import android.app.Application
 import com.example.homework4_1.utils.MySharedPreferences

@@ -1,6 +1,7 @@
 package com.example.homework4_1
 
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -31,6 +32,18 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener{ controller, destinetion, args ->
+            when(destinetion.id) {
+                R.id.splashFragment -> {
+                    binding.navView.visibility = View.GONE
+                }
+                R.id.onboardingFragment -> {
+                    binding.navView.visibility = View.GONE
+                }
+                else -> binding.navView.visibility = View.VISIBLE
+            }
+        }
     }
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)

@@ -66,4 +66,6 @@ dependencies {
     implementation("androidx.viewpager2:viewpager2:1.0.0")
 
     implementation ("com.android.support:multidex:1.0.3")
+
+    implementation("com.tbuonomo:dotsindicator:5.0")
 }

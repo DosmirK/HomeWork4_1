@@ -1,14 +1,17 @@
 package com.example.homework4_1.ui.home.content.tasks
 
 import android.os.Bundle
+import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.homework4_1.databinding.FragmentTaskEditBinding
+import kotlinx.parcelize.Parcelize
 
 class TaskEditFragment : Fragment() {
 
@@ -46,23 +49,32 @@ class TaskEditFragment : Fragment() {
             }
         }
     }
+    @Parcelize
+    data class TaskEditModel(
+        val task: Task,
+        val new: Boolean,
+        val taskType: TypeOfTask
+            ): Parcelable
 
     private fun initListener() {
         binding.btnSave.setOnClickListener {
             setFragmentResult(
-                REQUEST_KEY, TaskEditFragmentArgs(
-                    Task(
-                        text = binding.etTask.text.toString(),
-                        position = args.task.position,
-                        when (binding.rbGroup.checkedRadioButtonId) {
-                            binding.rbInUrgentTask.id -> TypeOfTask.URGENT_TASKS
-                            binding.rbCompletedTask.id -> TypeOfTask.COMPLETED
-                            else -> TypeOfTask.LONG_TASKS
-                        }
-                    ),
-                    new = args.new,
-                    lastType = args.lastType
-                ).toBundle()
+                requestKey = REQUEST_KEY,
+                result = bundleOf(
+                    "task_result" to TaskEditModel(
+                        Task(
+                            text = binding.etTask.text.toString(),
+                            position = args.task.position,
+                            when (binding.rbGroup.checkedRadioButtonId) {
+                                binding.rbInUrgentTask.id -> TypeOfTask.URGENT_TASKS
+                                binding.rbCompletedTask.id -> TypeOfTask.COMPLETED
+                                else -> TypeOfTask.LONG_TASKS
+                            }
+                        ),
+                        new = args.new,
+                        taskType = args.lastType
+                    )
+                )
             )
             findNavController().navigateUp()
         }
